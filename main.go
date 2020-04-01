@@ -6,8 +6,6 @@ import (
 	"github.com/easychessanimations/gochess/board"
 )
 
-var x string = "012"
-
 func main() {
 	board.About()
 
