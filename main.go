@@ -3,16 +3,17 @@
 package main
 
 import (
-	"fmt"
 	"github.com/easychessanimations/gochess/board"
 )
+
+var x string = "012"
 
 func main() {
 	board.About()
 
 	b := board.Board{}
 
-	b.Init()
+	b.Init(board.VARIANT_STANDARD)
 
-	fmt.Println(b)
+	b.Print()
 }
