@@ -11,7 +11,9 @@ func main() {
 
 	b := board.Board{}
 
-	b.Init(board.VARIANT_STANDARD)
+	b.Init(board.VARIANT_EIGHTPIECE)
+
+	b.SetFromFen(board.START_FENS[board.VARIANT_EIGHTPIECE])
 
 	b.Print()
 }
