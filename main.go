@@ -3,6 +3,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/easychessanimations/gochess/board"
 )
 
@@ -11,9 +12,17 @@ func main() {
 
 	b := board.Board{}
 
-	b.Init(board.VARIANT_EIGHTPIECE)
+	b.Init(board.VARIANT_STANDARD)
 
-	b.SetFromFen(board.START_FENS[board.VARIANT_EIGHTPIECE])
+	b.Reset()
+
+	b.SetPieceAtSquare(board.Square{0, 2}, board.Piece{Kind: board.Rook, Color: board.WHITE})
 
 	b.Print()
+
+	pslms := b.PslmsForVectorPieceAtSquare(board.Piece{Kind: board.Knight}, board.Square{1, 0})
+
+	for i, pslm := range pslms {
+		fmt.Println(i, b.MoveToSan(pslm))
+	}
 }
