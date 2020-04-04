@@ -13,7 +13,7 @@ import (
 	"github.com/easychessanimations/gochess/board"
 )
 
-const WASM = true
+const WASM = false
 
 func main() {
 	board.About()
@@ -61,7 +61,9 @@ func main() {
 
 			b.Push(move)
 		} else {
-			if text == "d" {
+			if text == "perf" {
+				b.Perf(3)
+			} else if text == "d" {
 				b.Pop()
 			} else if text == "" {
 				randIndex := rand.Intn(len(mb))
