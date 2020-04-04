@@ -24,6 +24,8 @@ func main() {
 
 	//b.SetFromFen("")
 
+	b.Perf(3)
+
 	reader := bufio.NewReader(os.Stdin)
 
 	ok := true
