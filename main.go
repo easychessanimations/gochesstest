@@ -21,6 +21,8 @@ func main() {
 
 	b.Reset()
 
+	//b.SetFromFen("")
+
 	reader := bufio.NewReader(os.Stdin)
 
 	ok := true
@@ -30,12 +32,14 @@ func main() {
 
 		b.Print()
 
-		pslms := b.PslmsForAllPiecesOfColor(b.Pos.Turn)
+		lms := b.LegalMovesForAllPieces()
 
-		mb := b.MovesSortedBySan(pslms)
+		mb := b.MovesSortedBySan(lms)
+
+		fmt.Printf("Legal moves ( %d ) ", len(lms))
 
 		for i, mbi := range mb {
-			fmt.Printf("%d. %s ", i+1, mbi.Str)
+			fmt.Printf("%d. %s [ %s ] ", i+1, mbi.San, mbi.Algeb)
 		}
 
 		fmt.Print("\n\n> ")
@@ -54,7 +58,7 @@ func main() {
 				b.Pop()
 			} else {
 				for _, mbi := range mb {
-					if mbi.Str == text {
+					if (mbi.San == text) || (mbi.Algeb == text) {
 						move := mbi.Move
 
 						b.Push(move)
