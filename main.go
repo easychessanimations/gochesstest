@@ -62,8 +62,7 @@ func main() {
 			b.Push(move, board.ADD_SAN)
 		} else {
 			if text == "go" {
-				bm, score := b.AlphaBeta(-10000, 10000, 2, 6)
-				fmt.Println(b.MoveToSan(bm), score)
+				bm, _ := b.Go(4, 6)
 
 				b.Push(bm, board.ADD_SAN)
 			} else if text == "perf" {
