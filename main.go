@@ -5,6 +5,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math/rand"
 	"os"
 	"strconv"
 	"strings"
@@ -17,7 +18,7 @@ func main() {
 
 	b := board.Board{}
 
-	b.Init(board.VARIANT_EIGHTPIECE)
+	b.Init(board.VARIANT_STANDARD)
 
 	b.Reset()
 
@@ -56,6 +57,12 @@ func main() {
 		} else {
 			if text == "d" {
 				b.Pop()
+			} else if text == "" {
+				randIndex := rand.Intn(len(mb))
+
+				move := mb[randIndex-1].Move
+
+				b.Push(move)
 			} else {
 				for _, mbi := range mb {
 					if (mbi.San == text) || (mbi.Algeb == text) {
