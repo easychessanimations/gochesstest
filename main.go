@@ -59,9 +59,14 @@ func main() {
 		if err == nil {
 			move := mb[i-1].Move
 
-			b.Push(move)
+			b.Push(move, board.ADD_SAN)
 		} else {
-			if text == "perf" {
+			if text == "go" {
+				bm, score := b.AlphaBeta(-10000, 10000, 5)
+				fmt.Println(b.MoveToSan(bm), score)
+
+				b.Push(bm, board.ADD_SAN)
+			} else if text == "perf" {
 				b.Perf(3)
 			} else if text == "d" {
 				b.Pop()
@@ -70,13 +75,13 @@ func main() {
 
 				move := mb[randIndex-1].Move
 
-				b.Push(move)
+				b.Push(move, board.ADD_SAN)
 			} else if text != "" {
 				for _, mbi := range mb {
 					if (mbi.San == text) || (mbi.Algeb == text) {
 						move := mbi.Move
 
-						b.Push(move)
+						b.Push(move, board.ADD_SAN)
 					}
 				}
 			}
