@@ -13,6 +13,8 @@ import (
 	"github.com/easychessanimations/gochess/board"
 )
 
+const WASM = true
+
 func main() {
 	board.About()
 
@@ -24,7 +26,9 @@ func main() {
 
 	//b.SetFromFen("")
 
-	b.Perf(3)
+	if WASM {
+		b.Perf(3)
+	}
 
 	reader := bufio.NewReader(os.Stdin)
 
@@ -65,7 +69,7 @@ func main() {
 				move := mb[randIndex-1].Move
 
 				b.Push(move)
-			} else {
+			} else if text != "" {
 				for _, mbi := range mb {
 					if (mbi.San == text) || (mbi.Algeb == text) {
 						move := mbi.Move
@@ -77,5 +81,9 @@ func main() {
 		}
 
 		ok = text != "x"
+
+		if WASM {
+			ok = false
+		}
 	}
 }
