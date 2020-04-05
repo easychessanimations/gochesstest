@@ -62,7 +62,7 @@ func main() {
 			b.Push(move, board.ADD_SAN)
 		} else {
 			if text == "go" {
-				bm, _ := b.Go(4, 6)
+				bm, _ := b.Go(2, 5)
 
 				b.Push(bm, board.ADD_SAN)
 			} else if text == "perf" {
